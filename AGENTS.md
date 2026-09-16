@@ -1,51 +1,78 @@
 # Diretrizes para Agentes de IA (`AGENTS.md`)
 
 > **Guia de Execução e Protocolo de Trabalho**  
-> *Este documento define o fluxo de trabalho, as normas obrigatórias e os padrões de qualidade para qualquer agente de IA que atuar nesta base de código, dedicada exclusivamente à tradução, modularização e publicação oficial de **Stars Without Number: Edição Revisada (Deluxe)** em Português do Brasil.*
+> *Este documento define o fluxo de trabalho, as normas obrigatórias e os padrões de qualidade para qualquer agente de IA que atuar nesta base de código. O repositório abriga o ecossistema integrado de RPG de Ficção Científica publicado via Quartz / Obsidian, composto pelo compêndio canônico de **Stars Without Number: Edição Revisada (Deluxe)** (*Inúmeras Estrelas*) e a ambientação expandida de **Coriolis** (*O Horizonte: O Terceiro Horizonte & A Grande Escuridão*).*
 
 ---
 
 ## 1. Estrutura de Diretórios e Documentação
 
-### Pasta `dev/` (Rascunhos, Scripts e Glossário)
-* **Objetivo:** Espaço de trabalho temporário, extração de PDFs e ferramentas auxiliares.
-* **Glossário Oficial:** Sempre consulte e atualize o arquivo [dev/glossario-termos.md](file:///home/caio/Documentos/github/coriolis/dev/glossario-termos.md) ao traduzir novos termos mecânicos ou de cenário.
-* **Execução de Scripts Python:** Sempre que for necessário rodar automações, extrações ou validações em Python, crie/salve o arquivo dentro da pasta `dev/` e execute-o a partir de lá (evitando comandos inline complexos no terminal).
+### Pasta `documentos/` (Glossários Oficiais e Decisões de Tradução)
+* **Objetivo:** Pasta oficial que centraliza os dicionários terminológicos, escolhas de tradução e convenções estilísticas do projeto.
+* **Decisões sobre Tradução:** Consulte [documentos/decisoes-sobre-traducao.md](file:///home/caio/Documentos/github/coriolis/documentos/decisoes-sobre-traducao.md) para verificar as diretrizes de localização, convenções de regras e tom de publicação adotados.
+* **Glossário Stars Without Number:** Consulte [documentos/Glossário-stars-without-number.md](file:///home/caio/Documentos/github/coriolis/documentos/Glossário-stars-without-number.md) para a correspondência canônica de mais de 500 termos mecânicos e de cenário de *Stars Without Number*.
+* **Glossário O Horizonte (Coriolis / YZE):** Consulte [documentos/glossario-termos.md](file:///home/caio/Documentos/github/coriolis/documentos/glossario-termos.md) para a padronização oficial de regras da Year Zero Engine (v2) e elementos de ambientação do Terceiro Horizonte e da Grande Escuridão.
 
-### Pasta `docs/` (Diretrizes e Auditoria)
-* **Painel de Auditoria de Completude:** Consulte o arquivo [docs/auditoria.md](file:///home/caio/Documentos/github/coriolis/docs/auditoria.md) para verificar a contagem de palavras, quantidade de arquivos e o status de revisão exaustiva de cada capítulo.
-* **Organização de Capítulos:** Consulte [docs/organizacao-de-capitulos-e-arquivos.md](file:///home/caio/Documentos/github/coriolis/docs/organizacao-de-capitulos-e-arquivos.md) para diretrizes de divisão temática e nomenclatura de pastas.
+### Pasta `docs/` (Auditoria Técnica e Organização)
+* **Painel de Auditoria de Completude:** Consulte o arquivo [docs/auditoria.md](file:///home/caio/Documentos/github/coriolis/docs/auditoria.md) para verificar a contagem de palavras, quantidade de arquivos e o status de revisão exaustiva do projeto (100% concluído para os 18 capítulos de SWN Deluxe).
+* **Organização Modular de Capítulos:** Consulte [docs/organizacao-de-capitulos-e-arquivos.md](file:///home/caio/Documentos/github/coriolis/docs/organizacao-de-capitulos-e-arquivos.md) para diretrizes de divisão temática, arquivos Hub e nomenclatura de pastas e subpastas.
 
-### Pasta `content/` (Conteúdo Oficial - Quartz)
-* **Objetivo:** Diretório base para a publicação do site/wiki via Quartz.
-* **Uso:** Todos os textos finais do sistema (regras, naves, criação de personagens, psionismo, mestrado e suplementos) devem ser escritos **diretamente nesta pasta**.
+### Pasta `content/` (Conteúdo Oficial de Publicação - Quartz)
+* **Objetivo:** Diretório base de onde o Quartz extrai o conteúdo da Wiki e compêndio digital.
+* **Estrutura de Seções:**
+  * `content/index.md`: Hub e índice principal de navegação da raiz da Wiki (deve conter no frontmatter YAML `title: Introdução` ou título equivalente da página inicial).
+  * `content/1. Inúmeras Estrelas/`: Compêndio integral e exaustivo de *Stars Without Number: Edição Revisada (Deluxe)*, dividido em:
+    * `1.1. Conteúdo do Jogador/` (Capítulos 2 a 6: Criação de Personagem, Psionismo, Sistemas, Equipamento e Veículos, Naves Espaciais).
+    * `1.2. Conteúdo do Mestre/` (Capítulos 7 a 18: A História do Espaço, Criação de Setor, Criação de Aventuras, Xenobestiário, Facções, Recursos do Mestre, e Suplementos Deluxe 13 a 18).
+  * `content/2. O Horizonte/`: Ambientação e expansão de *Coriolis* (O Terceiro Horizonte e A Grande Escuridão), dividida em pastas temáticas como `Espécies/`, `Locais Importantes/`, `Facções/` e outros tópicos de cenário.
 * **Regras Estritas para `content/`:**
-  * **Nomenclatura (Quartz):** NUNCA use hífens (`-`) para separar palavras no nome das pastas. Utilize a grafia oficial com acentos e espaços (ex: `content/1. Inúmeras Estrelas/1.1. Conteúdo do Jogador/2. Criação de Personagem/`).
-  * **Links Internos:** Utilize obrigatoriamente a sintaxe do Obsidian: `[[Nome da Pasta/Nome do Arquivo|Texto Alternativo]]`.
-  * **Proibido ASCII Art:** NUNCA crie tabelas usando caracteres decorativos (como `┌──┐`), pois elas quebram a renderização da engine Quartz. Utilize exclusivamente tabelas em Markdown padrão GFM (`| Coluna |`).
-  * **Arquivo Index Exclusivo:** O único arquivo chamado `index.md` deve estar na raiz de `content/` (`content/index.md`) e precisa iniciar com o cabeçalho YAML `title: Introdução`.
+  * **Nomenclatura (Quartz):** NUNCA utilize hífens (`-`) para separar palavras no nome de pastas dentro de `content/`. Utilize a grafia oficial com acentos e espaços (ex: `content/1. Inúmeras Estrelas/1.1. Conteúdo do Jogador/2. Criação de Personagem/` ou `content/2. O Horizonte/Locais Importantes/`).
+  * **Links Internos (Obsidian):** Utilize obrigatoriamente a sintaxe do Obsidian: `[[Caminho da Pasta/Nome do Arquivo|Texto Alternativo]]`.
+  * **Proibido ASCII Art:** NUNCA crie tabelas usando caracteres decorativos de desenho de linhas (como `┌──┐`), pois elas corrompem a renderização do Quartz. Utilize exclusivamente tabelas em Markdown padrão GFM (`| Coluna |`).
+  * **Proibido Uso de Emojis:** É terminantemente proibido o uso de emojis em qualquer título, marcador de lista, tabela ou corpo de texto em `content/`.
+  * **Texto Puro de Publicação (Sem Metalinguagem de Chat):** Nenhum arquivo de `content/` deve conter saudações, introduções ou notas de IA (como *"Claro, aqui está..."*, *"Eu resumiria a civilização assim:"*). O conteúdo deve ser redigido diretamente como prosa editorial imersiva e formal de livro de RPG.
+
+### Pasta `dev/` (Scripts, Automações, Campanhas e Fichas)
+* **Objetivo:** Espaço de trabalho técnico, processamento de dados e suporte a jogo.
+* **Execução de Scripts Python:** Sempre crie, edite e execute scripts de automação, auditoria ou extração de texto a partir da pasta `dev/` (evitando one-liners complexos no terminal).
+* **Estrutura Interna de Suporte:**
+  * `dev/3. Campanha/`: Diários de bordo, fichas de nave de campanha, histórico de missões e gerenciamento de NPCs.
+  * `dev/5. Fichas/`: Modelos de fichas (Personagem, Nave, Mech, Veículo).
+  * `dev/templates/`: Modelos e esqueletos rápidos para criação de planetas, NPCs e sessões.
+  * Análises conceituais e mecânicas de integração (`dev/escopo-e-planejamento.md`, `dev/conflitos-e-solucoes-mecanicas.md`).
+
+### Pasta `livros/` (Material Fonte e Referências Originais)
+* **Objetivo:** Repositório dos PDFs originais de referência (`Stars Without Number: Revised Deluxe Edition`, manuais de Coriolis, etc.) para extração textual e conferência de regras.
 
 ---
 
-## 2. Regras de Estilo, Terminologia e Tradução Integral
+## 2. Regras de Estilo, Terminologia e Qualidade
 
-* **PROIBIDO USO DE EMOJIS:** É estritamente proibido o uso de emojis em títulos, marcadores de lista, tabelas ou no meio do texto em **qualquer arquivo** deste projeto.
-* **TRADUÇÃO INTEGRAL E SEM RESUMOS (PADRÃO OBRIGATÓRIO E INEGOCIÁVEL):** 
-  * É expressamente proibido resumir, abreviar, sintetizar, parafrasear ou omitir parágrafos de prosa, descrições narrativas, caixas de texto, exemplos de jogo, tabelas completas, notas explicativas ou regras detalhadas do livro original *Stars Without Number Revised Edition*.
-  * A tradução deve ser **100% completa e exaustiva**, traduzindo fielmente todo o conteúdo parágrafo por parágrafo, detalhe por detalhe, tabela por tabela, mantendo toda a profundidade e extensão do material original.
-  * **Padrão de Referência (Benchmark):** O modelo absoluto de execução para todo o projeto é o **Capítulo 13 (Campanhas Trans-humanas)**, seguido pelos Capítulos 14 a 18, que foram traduzidos integralmente e de forma exaustiva sem nenhum resumo. Todos os capítulos devem seguir rigorosamente esse mesmo padrão.
-* **Plano de Revisão Geral:** Todos os capítulos anteriores do livro básico (Capítulos 1 a 12) passarão por uma rodada de revisão e expansão exaustiva para garantir que nenhum deles contenha resumos e que todos atinjam a completude de 100% demonstrada no bloco Deluxe (Capítulos 13 a 18).
-* **Tradução Exclusiva para Português (PT-BR):** Todos os termos de regras, classes, perícias, armas e história devem ser traduzidos para o português formal brasileiro de acordo com o padrão do glossário oficial, preservando apenas termos técnicos em inglês entre parênteses em sua primeira menção para facilitar referência.
-
----
-
-## 3. Protocolo de Execução e Controle de Versão
-
-1. **Extração Direta da Fonte:** Antes de criar ou revisar qualquer capítulo, extraia as páginas correspondentes diretamente do PDF original (`livros/pdfcoffee.com_stars-without-number-revised-deluxe-edition-pdf-free.pdf`) para a pasta `dev/`.
-2. **Modularização Temática:** Capítulos extensos devem ser divididos em uma pasta própria de capítulo com um arquivo Hub e subarquivos numerados (ex: `14. Magia Espacial.md`, `14.1. Classes Arcanas e Conjuração.md`, etc.).
-3. **Auditoria e Validação:** Ao concluir a escrita, valide a contagem de palavras, verifique a ausência de emojis/ASCII art e atualize [docs/auditoria.md](file:///home/caio/Documentos/github/coriolis/docs/auditoria.md) e [docs/organizacao-de-capitulos-e-arquivos.md](file:///home/caio/Documentos/github/coriolis/docs/organizacao-de-capitulos-e-arquivos.md).
-4. **Controle de Versão (Git):** Sempre faça commit das alterações locais no Git ao concluir com sucesso uma tarefa. Não faça push automático para o servidor remoto a menos que seja explicitamente solicitado pelo usuário.
+* **PROIBIDO USO DE EMOJIS:** É estritamente proibido o uso de emojis em títulos, marcadores de lista, tabelas ou no meio do texto em **qualquer arquivo** deste repositório.
+* **ESTADO DE STARS WITHOUT NUMBER: 100% CONCLUÍDO E AUDITADO:**
+  * Todos os 18 capítulos de *Stars Without Number: Edição Revisada (Deluxe)* foram integralmente traduzidos, modularizados e auditados em 108 arquivos modulares (~227.000 palavras em PT-BR), atingindo 99,5% de paridade com o texto original sem resumos.
+  * **Diretriz de Não-Regressão:** Qualquer intervenção nos arquivos de `content/1. Inúmeras Estrelas/` é estritamente de manutenção, correção cirúrgica de links internos, erratas pontuais ou ajuste fino de tabelas. É expressamente proibido resumir, sintetizar, parafrasear ou podar conteúdos já traduzidos.
+* **PADRÃO EXAUSTIVO PARA NOVOS CONTEÚDOS (O HORIZONTE / CORIOLIS):**
+  * Toda produção de novos conteúdos narrativos ou regras para `content/2. O Horizonte/` deve manter o mesmo rigor e profundidade: descrições detalhadas, riqueza de cenário, parâmetros mecânicos completos e ausência total de sínteses simplistas.
+* **CONSULTA OBRIGATÓRIA AOS GLOSSÁRIOS:**
+  * Todos os termos técnicos, perícias, classes, atributos, naves, equipamentos e elementos de cenário devem seguir rigorosamente as decisões de [documentos/decisoes-sobre-traducao.md](file:///home/caio/Documentos/github/coriolis/documentos/decisoes-sobre-traducao.md), [documentos/Glossário-stars-without-number.md](file:///home/caio/Documentos/github/coriolis/documentos/Glossário-stars-without-number.md) e [documentos/glossario-termos.md](file:///home/caio/Documentos/github/coriolis/documentos/glossario-termos.md).
+  * Ao introduzir conceitos mecânicos novos com termo de origem anglófona consagrado, insira o termo original em inglês entre parênteses na sua primeira ocorrência (ex.: *Dado de Fray (Fray Die)*, *PE (Pontos de Escuridão - Darkness Points)*).
 
 ---
 
-> **AVISO CRÍTICO:** Qualquer agente que iniciar uma tarefa neste repositório **DEVE** ler este documento (`AGENTS.md`) e consultar o painel [docs/auditoria.md](file:///home/caio/Documentos/github/coriolis/docs/auditoria.md) antes de criar ou modificar qualquer arquivo.
+## 3. Protocolo de Execução para Agentes de IA
+
+1. **Leitura e Contextualização Prévia:** Antes de criar, editar ou revisar arquivos, verifique as diretrizes em `documentos/` e o estado atual em `docs/auditoria.md` e `docs/organizacao-de-capitulos-e-arquivos.md`.
+2. **Modularização e Arquivos Hub:** Sempre que criar ou reestruturar um módulo extenso, crie uma pasta temática com nome descritivo (sem hífens), um arquivo Hub de introdução/sumário e subarquivos numerados e focados.
+3. **Validação de Sintaxe e Links:**
+   * Certifique-se de que todos os links internos utilizam a sintaxe `[[Pasta/Arquivo|Texto]]` com caminhos válidos.
+   * Valide que todas as tabelas estão em formato GFM puro e que caracteres especiais (como `|` dentro de links ou textos de tabela) sejam devidamente escapados (`\|`).
+   * Garanta que nenhum emoji ou arte ASCII foi introduzido.
+4. **Trabalho Técnico Isolado em `dev/`:** Scripts de apoio, extrações de PDFs e códigos de checagem devem sempre ser salvos e executados na pasta `dev/`, mantendo a raiz do projeto e a pasta `content/` limpas de arquivos temporários.
+5. **Controle de Versão (Git):**
+   * Realize commits claros com mensagens no padrão Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`) quando o fluxo de trabalho exigir commit.
+   * **Atenção:** Se o usuário instruir explicitamente para **não commitar** ao finalizar a tarefa, **NÃO** realize `git commit` nem execute `git push`. Respeite a instrução do usuário.
+
+---
+
+> **AVISO CRÍTICO:** Qualquer agente que iniciar uma tarefa neste repositório **DEVE** ler este documento (`AGENTS.md`) e consultar os glossários em [documentos/](file:///home/caio/Documentos/github/coriolis/documentos/) e a auditoria em [docs/auditoria.md](file:///home/caio/Documentos/github/coriolis/docs/auditoria.md) antes de criar ou modificar qualquer arquivo.
